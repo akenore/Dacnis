@@ -17,7 +17,6 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validation téléphone si renseigné
     if (formData.telephone && !isValidPhoneNumber(formData.telephone)) {
       setStatus("error");
       setErrorMsg("Le numéro de téléphone n'est pas valide.");
@@ -46,17 +45,34 @@ export default function ContactForm() {
   };
 
   useEffect(() => {
+    const handleUrlChange = () => {
+      const params = new URLSearchParams(window.location.search);
+      const commande = params.get("commande");
+      if (commande === "Location" || commande === "Achat") {
+        setFormData((prev) => ({ ...prev, commande }));
+      }
+    };
+
+    handleUrlChange();
+    window.addEventListener("popstate", handleUrlChange);
+    window.addEventListener("hashchange", handleUrlChange);
+    return () => {
+      window.removeEventListener("popstate", handleUrlChange);
+      window.removeEventListener("hashchange", handleUrlChange);
+    };
+  }, []);
+
+  useEffect(() => {
     if (status === "success") {
-      const timer = setTimeout(() => setStatus("idle"), 2000);
+      const timer = setTimeout(() => setStatus("idle"), 5000);
       return () => clearTimeout(timer);
     }
   }, [status]);
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="contact-form">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2 scroll-mt-[100px]" id="contact">
         {formFields.map((field) => {
-          // Cas 1 : SELECT
           if (field.type === "select") {
             return (
               <select
@@ -65,7 +81,7 @@ export default function ContactForm() {
                 required={field.required}
                 value={formData[field.id] ?? ""}
                 onChange={(e) => handleChange(field.id, e.target.value)}
-                className="contact-form__input"
+                className="w-full border border-[#d0d5dd] rounded-[7px] p-[10px_13px] text-[13px] text-[#333] bg-white outline-none font-inherit box-border transition-[border-color] duration-150 focus:border-blue-brand focus:shadow-[0_0_0_3px_rgba(33,118,199,0.12)]"
                 disabled={status === "loading"}
               >
                 <option value="" disabled>{field.placeholder}</option>
@@ -76,10 +92,9 @@ export default function ContactForm() {
             );
           }
 
-          // Cas 2 : TÉLÉPHONE — détecté par id "telephone"
           if (field.id === "telephone") {
             return (
-              <div key={field.id} className="phone-input-container">
+              <div key={field.id} className="relative">
                 <PhoneInput
                   international
                   defaultCountry="FR"
@@ -87,13 +102,12 @@ export default function ContactForm() {
                   value={formData[field.id] ?? ""}
                   onChange={(val) => handleChange(field.id, val ?? "")}
                   disabled={status === "loading"}
-                  className="contact-form__input"
+                  className="w-full border border-[#d0d5dd] rounded-[7px] p-[10px_13px] text-[13px] text-[#333] bg-white outline-none font-inherit box-border transition-[border-color] duration-150 focus:border-blue-brand focus:shadow-[0_0_0_3px_rgba(33,118,199,0.12)] phone-input-override"
                 />
               </div>
             );
           }
 
-          // Cas 3 : Autres champs (text, email, etc.)
           return (
             <input
               key={field.id}
@@ -103,38 +117,31 @@ export default function ContactForm() {
               required={field.required}
               value={formData[field.id] ?? ""}
               onChange={(e) => handleChange(field.id, e.target.value)}
-              className="contact-form__input"
+              className="w-full border border-[#d0d5dd] rounded-[7px] p-[10px_13px] text-[13px] text-[#333] bg-white outline-none font-inherit box-border transition-[border-color] duration-150 focus:border-blue-brand focus:shadow-[0_0_0_3px_rgba(33,118,199,0.12)]"
               disabled={status === "loading"}
             />
           );
         })}
 
         {status === "error" && (
-          <p
-            className="contact-form__error"
-            style={{ color: "#ff4d4d", marginTop: "10px" }}
-          >
+          <p className="text-[#ff4d4d] text-[13px] mt-2.5 text-center font-bold">
             ⚠️ {errorMsg}
           </p>
         )}
 
         <button
           type="submit"
-          className="contact-form__submit"
+          className="w-full bg-linear-to-b from-[#f5ca2a] to-[#c8940a] text-white font-extrabold text-[14px] p-[13px] rounded-[7px] border-none cursor-pointer mt-1 font-inherit shadow-[0_4px_14px_rgba(200,148,10,0.35)] transition-transform duration-100 hover:-translate-y-px disabled:opacity-70 disabled:cursor-not-allowed"
           disabled={status === "loading"}
-          style={{
-            opacity: status === "loading" ? 0.7 : 1,
-            cursor: status === "loading" ? "not-allowed" : "pointer",
-          }}
         >
           {status === "loading" ? "Envoi en cours..." : "Accéder à STRAKON →"}
         </button>
       </form>
 
       {status === "success" && (
-        <div className="banner-success">
-          <div className="banner-success__icon">✓</div>
-          <span className="banner-success__text">Inscription enregistrée !</span>
+        <div className="fixed top-0 left-0 right-0 z-[9999] bg-linear-to-r from-[#059669] to-[#10b981] text-white p-4 flex items-center justify-center gap-3 shadow-[0_4px_16px_rgba(5,150,105,0.3)] animate-[bannerSlideDown_0.4s_cubic-bezier(0.34,1.56,0.64,1)]">
+          <div className="w-6 h-6 rounded-full bg-white text-[#059669] flex items-center justify-center text-[16px] font-black">✓</div>
+          <span className="text-[15px] font-semibold">Votre commande de licence a été transmise avec succès !</span>
         </div>
       )}
     </>

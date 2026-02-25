@@ -34,13 +34,14 @@ export const countries = [
 ];
 
 export const formFields: FormField[] = [
-    { id: "name",        placeholder: "Nom / Prénom",                         type: "text",   required: true  },
-    { id: "email",       placeholder: "Email",                                type: "email",  required: true  },
-    { id: "telephone",   placeholder: "Téléphone",                            type: "tel",    required: false },
-    { id: "address",     placeholder: "Adresse complète",                     type: "text",   required: false },
-    { id: "ville",       placeholder: "Ville",                                type: "text",   required: false },
-    { id: "codepostale", placeholder: "Code postal",                          type: "text",   required: false },
-    { id: "country",     placeholder: "Pays",                                 type: "select", required: false, options: countries },
-    { id: "company",     placeholder: "Société",                              type: "text",   required: true  },
-    { id: "vat",         placeholder: "Numéro de TVA intracommunautaire",     type: "text",   required: false },
+    { id: "name", placeholder: "Nom / Prénom", type: "text", required: true },
+    { id: "email", placeholder: "Email", type: "email", required: true },
+    { id: "telephone", placeholder: "Téléphone / WhatsApp", type: "tel", required: true },
+    { id: "address", placeholder: "Adresse complète", type: "text", required: true },
+    { id: "ville", placeholder: "Ville", type: "text", required: true },
+    { id: "codepostale", placeholder: "Code postal", type: "text", required: true },
+    { id: "country", placeholder: "Pays", type: "select", required: true, options: countries },
+    { id: "company", placeholder: "Société", type: "text", required: false },
+    { id: "vat", placeholder: "Numéro de TVA intracommunautaire", type: "text", required: false },
+    { id: "commande", placeholder: "Type de commande", type: "select", required: true, options: ["Location", "Achat"] },
 ];

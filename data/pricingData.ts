@@ -31,7 +31,7 @@ export interface TvaCondition {
 export const pricingOptions: PricingOption[] = [
   {
     id: "option-1",
-    tag: "🟦 OPTION 1 – STRAKON en location (3 mois)",
+    tag: "OPTION 1 – STRAKON en location (3 mois)",
     icon: "monitor",
     title: "Lancez vos projets immédiatement",
     accentColor: "blue",
@@ -49,26 +49,17 @@ export const pricingOptions: PricingOption[] = [
     price: "1 100",
     tvaFeatures: [
       { id: "t0", text: "TVA applicable selon votre situation" },
-      {
-        id: "t1",
-        text: "Une facture vous est envoyée.",
-      },
-      {
-        id: "t2",
-        text: "Dès réception du paiement, vous recevez un code de déblocage valable 3 mois.",
-      },
-      {
-        id: "t3",
-        text: "Vous pouvez commencer à travailler immédiatement.",
-      },
+      { id: "t1", text: "Besoin de démarrer rapidement ? Testez STRAKON en conditions réelles sur vos projets." },
+      { id: "t2", text: "Une facture vous est envoyée. Dès réception du paiement, vous recevez un code de déblocage valable 3 mois." },
+      { id: "t3", text: "Vous pouvez commencer à travailler immédiatement." },
     ],
     tvaPrice: "1 100",
     ctaLabel: "Je démarre avec la location 3 mois",
-    ctaHref: "#contact",
+    ctaHref: "?commande=Location#contact",
   },
   {
     id: "option-2",
-    tag: "🟨 OPTION 2 – Licence STRAKON définitive",
+    tag: "OPTION 2 – Licence STRAKON définitive",
     icon: "key",
     title: "Investissez durablement dans votre performance",
     accentColor: "gold",
@@ -79,30 +70,20 @@ export const pricingOptions: PricingOption[] = [
     ],
     idealTitle: "Idéal pour",
     idealItems: [
-      { id: "i1", text: "Intégrer STRAKON durablement dans votre bureau d'études" },
-      { id: "i2", text: "Standardiser vos méthodes" },
-      { id: "i3", text: "Améliorer votre productivité sur le long terme" },
+      { id: "index-1", text: "Intégrer STRAKON durablement dans votre bureau d'études" },
+      { id: "index-2", text: "Standardiser vos méthodes" },
+      { id: "index-3", text: "Améliorer votre productivité sur le long terme" },
     ],
     price: "5 900",
     tvaFeatures: [
-      { id: "t0", text: "Environ 10 % du prix catalogue — TVA applicable selon votre situation" },
-      {
-        id: "t1",
-        text: "Une facture vous est émise.",
-      },
-      {
-        id: "t2",
-        text: "Dès réception du paiement, vous recevez un code de déblocage temporaire valable 15 jours.",
-      },
-      {
-        id: "t3",
-        text: "La clé définitive vous est ensuite envoyée.",
-      },
+      { id: "t0", text: "Profitez d’un tarif exceptionnel réservé aux participants — TVA applicable selon votre situation" },
+      { id: "t1", text: "Une facture vous est émise. Dès réception du paiement : Vous recevez un code de déblocage temporaire valable 15 jours." },
+      { id: "t2", text: "La clé définitive vous est ensuite envoyée." },
     ],
     tvaPrice: "5 900",
-    tvaPriceNote: "-10% du prix catalogue",
+    tvaPriceNote: "Environ 10 % du prix catalogue",
     ctaLabel: "Je choisis la licence définitive",
-    ctaHref: "#contact",
+    ctaHref: "?commande=Achat#contact",
   },
 ];
 
