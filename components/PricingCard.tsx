@@ -132,11 +132,7 @@ export default function PricingCard({ option }: { option: PricingOption }) {
               <span className="text-[16px] font-bold self-end mb-0.5">HT</span>
             </div>
 
-            {isGold ? (
-              <p className="text-[#777] text-[11px] italic text-center m-0 mb-3.5 leading-tight">{option.tvaPriceNote}</p>
-            ) : (
-              <p className="text-navy text-[11px] font-black uppercase tracking-[0.5px] text-center m-0 mb-3.5">-10% DU PRIX CATALOGUE</p>
-            )}
+
 
             <a
               href={option.ctaHref}

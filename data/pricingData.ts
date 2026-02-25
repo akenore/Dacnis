@@ -1,5 +1,3 @@
-// data/pricingData.ts
-
 export interface Feature {
   id: string;
   text: string;
@@ -77,8 +75,8 @@ export const pricingOptions: PricingOption[] = [
     price: "5 900",
     tvaFeatures: [
       { id: "t0", text: "Profitez d’un tarif exceptionnel réservé aux participants — TVA applicable selon votre situation" },
-      { id: "t1", text: "Une facture vous est émise. Dès réception du paiement : Vous recevez un code de déblocage temporaire valable 15 jours." },
-      { id: "t2", text: "La clé définitive vous est ensuite envoyée." },
+      { id: "t1", text: "Une facture vous est émise. Vous recevrez un code de deblocage temporaire valable 15 jours." },
+      { id: "t2", text: "Dés reception du paiement : La clé définitive vous est ensuite envoyée." },
     ],
     tvaPrice: "5 900",
     tvaPriceNote: "Environ 10 % du prix catalogue",
